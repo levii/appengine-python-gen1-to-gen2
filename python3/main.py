@@ -33,7 +33,7 @@ else:
 
 
 class SampleRepository(DatastoreRepositoryMixin):
-    def save(self, name: str):
+    def save(self, name: str, structured: bool = False):
         entity = self.DatastoreEntity(key=self.datastore_client.key('Book', str(uuid.uuid4())))
 
         embedded_entity = self.DatastoreEntity()
@@ -46,6 +46,12 @@ class SampleRepository(DatastoreRepositoryMixin):
             },
             'embedded_entity': embedded_entity,
         })
+
+        if structured:
+            entity.update({
+                'structured.kind': 'This is kind (py3)',
+                'structured.value': 'This is value (py3)'
+            })
         self.datastore_client.put(entity=entity)
 
     def fetch_all(self):
@@ -65,10 +71,13 @@ def hello():
 
 @app.route('/create')
 def create():
-    SampleRepository().save(name=flask.request.args.get('name', 'sample book'))
+    SampleRepository().save(
+        name=flask.request.args.get('name', 'sample book'),
+        structured='structured' in flask.request.args,
+    )
 
     return flask.jsonify({'done': True})
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8090, debug=True)
