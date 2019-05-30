@@ -2,6 +2,7 @@ import flask
 import logging
 import sys
 import os
+import uuid
 
 from gumo.core import configure as core_configure
 from gumo.datastore import configure as datastore_configure
@@ -31,7 +32,7 @@ else:
 
 class SampleRepository(DatastoreRepositoryMixin):
     def save(self, name: str):
-        entity = self.DatastoreEntity(key=self.datastore_client.key('Book'))
+        entity = self.DatastoreEntity(key=self.datastore_client.key('Book', str(uuid.uuid4())))
 
         embedded_entity = self.DatastoreEntity()
         embedded_entity.update({'entity_key': 'entity_value'})
