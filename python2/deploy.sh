@@ -2,4 +2,4 @@
 
 set -ex
 
-gcloud app deploy app.yaml --project=$PROJECT_NAME
+gcloud app deploy app.yaml --project=$PROJECT_NAME --quiet
