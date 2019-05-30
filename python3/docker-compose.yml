@@ -1,0 +1,9 @@
+version: '3'
+services:
+  datastore_emulator:
+    image: singularities/datastore-emulator
+    environment:
+      DATASTORE_PROJECT_ID: levii-playground
+      DATASTORE_LISTEN_ADDRESS: 0.0.0.0:8081
+    ports:
+      - "8081:8081"

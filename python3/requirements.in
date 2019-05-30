@@ -1,0 +1,5 @@
+google-cloud-storage
+flask
+requests
+gumo-core
+gumo-datastore

@@ -1,0 +1,6 @@
+runtime: python37
+service: default
+
+env_variables:
+  PROJECT_NAME: levii-playground
+  PROJECT_LOCATION: asia-northeast1
