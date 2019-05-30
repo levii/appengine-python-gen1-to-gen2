@@ -13,6 +13,8 @@ logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 app = flask.Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
+app.config['DEBUG'] = True
 
 core_configure(
     google_cloud_project='levii-playground',
