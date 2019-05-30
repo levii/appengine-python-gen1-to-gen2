@@ -1,5 +1,5 @@
 runtime: python37
-service: default
+service: python37
 
 env_variables:
   PROJECT_NAME: levii-playground
